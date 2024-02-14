@@ -11,6 +11,7 @@ struct CustomButton: View {
     
     var buttonColor: ButtonColor
     var buttonTitle: String
+    let action: () -> Void
     
     enum ButtonColor: Equatable {
         case black
@@ -18,9 +19,10 @@ struct CustomButton: View {
     }
     
     var body: some View {
-//        Color.black
-//            .ignoresSafeArea()
-        Button(action: {}) {
+
+        Button(action: {
+            action()
+        }) {
             ZStack {
                 RoundedRectangle(cornerRadius: 16.0)
                     .fill(buttonColor == .white ? .white : .black)
@@ -36,5 +38,5 @@ struct CustomButton: View {
 }
 
 #Preview {
-    CustomButton(buttonColor: .black, buttonTitle: "Sample Text")
+    CustomButton(buttonColor: .black, buttonTitle: "Sample Text", action: {})
 }

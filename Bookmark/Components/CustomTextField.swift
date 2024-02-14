@@ -9,23 +9,23 @@ import SwiftUI
 
 struct CustomTextField: View {
     var placeholder: String
+    @Binding var text: String
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 12.0)
                 .foregroundColor(Color(red: 0.95, green: 0.95, blue: 0.93))
                 .frame(height: 46.0, alignment: .topLeading)
             
-            TextField(placeholder, text: .constant(""))
+            TextField(placeholder, text: $text)
                 .textFieldStyle(.plain)
                 .fontWeight(.regular)
                 .border(.clear)
                 .padding()
                 .foregroundColor(.black)
-        }
-//        .padding()
-    }
-}
+                .disableAutocorrection(true)
+                .textCase(nil)
 
-#Preview {
-    CustomTextField(placeholder: "Sample Text")
+        }
+    }
 }
