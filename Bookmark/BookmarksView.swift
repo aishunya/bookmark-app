@@ -19,23 +19,17 @@ struct BookmarksView: View {
     }
     
     var body: some View {
+        NavigationLink() {
+        } label: {
+            EmptyView()
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationTitle(links.isEmpty ? "Bookmark App" : "List")
+        
         if links.isEmpty {
-            NavigationLink() {
-            } label: {
-                EmptyView()
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Bookmark App")
-            .navigationBarBackButtonHidden(true)
             emptyView
         } else {
-            NavigationLink() {
-            } label: {
-                EmptyView()
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("List")
-            .navigationBarBackButtonHidden(true)
             listView
         }
     }
@@ -74,7 +68,9 @@ struct BookmarksView: View {
                 ForEach(links) { link in
                     LinkRowView(link: link)
                         .onTapGesture {
-                           print("OPENING")
+                            if let url = URL(string: link.url) {
+                                openURL(url)
+                            }
                         }
                 }
             }

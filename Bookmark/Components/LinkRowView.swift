@@ -17,11 +17,7 @@ struct LinkRowView: View {
                 .fontWeight(.regular)
                 .foregroundColor(.black)
             Spacer()
-            Button(action: {
-                if let url = URL(string: link.url) {
-                    UIApplication.shared.open(url)
-                }
-            }) {
+            Button(action: {}) {
                 Image("linkIcon")
                     .foregroundColor(.black)
             }
